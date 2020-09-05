@@ -84,6 +84,7 @@ def main():
     if use_cuda:
         net, criterion = net.cuda(), criterion.cuda()
 
+    print("before training")
     for epoch in range(args.epochs):
         print_loss = {'train': 0., 'dev': 0.}
         for phase in ['train', 'dev']:
@@ -105,14 +106,15 @@ def main():
                         inv_inputs, inv_outputs = net(outputs, sorted_lengths, h, c, dual=True)
                     loss = criterion(inv_inputs.view(-1, args.in_dim), inputs.view(-1, args.in_dim)) + \
                         criterion(inv_outputs.view(-1, args.out_dim), outputs.view((-1, args.out_dim)))
-                    print_loss[phase] += loss.data[0]
+                    print_loss[phase] += loss.data
                 else:
                     predicts = net(inputs, sorted_lengths, h, c)
 
                     loss = criterion(predicts.view(-1, args.out_dim), outputs.view(-1, args.in_dim))
-                    print_loss[phase] += loss.data[0]
+                    print_loss[phase] += loss.data
 
                 if phase == 'train':
+                    print(".", end='')
                     loss.backward()
                     optimizer.step()
             print_loss[phase] /= len(dataloaders[phase])

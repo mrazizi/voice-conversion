@@ -12,7 +12,7 @@ source activate dl
 python train_rnn.py \
     --ssp bdl \
     --tsp slt \
-    --data_root /mnt/lustre/sjtu/users/kc430/data/my/vc/cmu_arctic \
+    --data_root datasets/arctic_out \
     --epochs 30 \
-    --dual True \
+    --dual False \
 

@@ -11,7 +11,7 @@ source activate dl
 python preprocess.py \
     --num_workers 10 \
     --name cmu_arctic \
-    --in_dir /home/mra/w/dataset/conversion/CMUARCTIC \
-    --out_dir /home/mra/w/dataset/conversion/CMUARCTIC_output
+    --in_dir datasets/arctic \
+    --out_dir datasets/arctic_out
 
 

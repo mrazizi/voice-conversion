@@ -17,7 +17,11 @@ def build_from_path(in_dir, out_dir, num_workers=1, tqdm=lambda x: x):
     executor = ProcessPoolExecutor(max_workers=num_workers)
     futures = []
 
+    cmu_arctic.available_speakers = ['awb', 'bdl', 'clb', 'jmk', 'ksp',
+                                     'rms', 'slt']
     speakers = cmu_arctic.available_speakers
+    print(speakers)
+    input()
 
     wd = cmu_arctic.WavFileDataSource(in_dir, speakers=speakers)
     wav_paths = wd.collect_files()

@@ -4,7 +4,8 @@ import numpy as np
 from os.path import join, expanduser
 
 
-data_root = join(expanduser("~"), "data/sjtu/tts/voice-conversion/arctic/")
+# data_root = join(expanduser("~"), "data/sjtu/tts/voice-conversion/arctic/")
+data_root = "datasets/arctic"
 fs = 16000
 fftlen = pyworld.get_cheaptrick_fft_size(fs)
 alpha = pysptk.util.mcepalpha(fs)

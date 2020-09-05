@@ -10,6 +10,7 @@ import pickle
 import config
 import librosa
 import os
+import soundfile as sf
 
 import numpy as np
 from sklearn.mixture import GaussianMixture
@@ -109,7 +110,7 @@ XY = remove_zeros_frames(XY)
 
 # train gmm
 
-gmm = GaussianMixture(n_components=64, covariance_type="full", max_iter=100, verbose=1)
+gmm = GaussianMixture(n_components=64, covariance_type="full", max_iter=10, verbose=1)
 gmm.fit(XY)
 
 os.makedirs("checkpoints", exist_ok=True)
@@ -126,8 +127,8 @@ for i, (src_path, tgt_path) in enumerate(zip(clb_source.test_paths, slt_source.t
     w_MLPG = test_one_utt(src_path, tgt_path, disable_mlpg=False)
 
     maxv = np.iinfo(np.int16).max
-    librosa.output.write_wav('wavs/gmm/w_MLPG_{}.wav'.format(i), (w_MLPG*maxv).astype(np.int16), config.fs)
-    librosa.output.write_wav('wavs/gmm/wo_MLPG_{}.wav'.format(i), (wo_MLPG*maxv).astype(np.int16), config.fs)
+    sf.write('wavs/gmm/w_MLPG_{}.wav'.format(i), (w_MLPG*maxv).astype(np.int16), config.fs)
+    sf.write('wavs/gmm/wo_MLPG_{}.wav'.format(i), (wo_MLPG*maxv).astype(np.int16), config.fs)
 
 
 

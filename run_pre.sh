@@ -11,7 +11,7 @@ source activate dl
 python preprocess.py \
     --num_workers 10 \
     --name cmu_arctic \
-    --in_dir /mnt/lustre/sjtu/users/kc430/data/sjtu/tts/voice-conversion/arctic \
-    --out_dir /mnt/lustre/sjtu/users/kc430/data/my/vc/cmu_arctic
+    --in_dir /home/mra/w/dataset/conversion/CMUARCTIC \
+    --out_dir /home/mra/w/dataset/conversion/CMUARCTIC_output
 
 
